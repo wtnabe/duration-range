@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DurationRange do
+describe DurationRange::Date do
   #
   # @param range [Range]
   # @return [Array]
@@ -14,7 +14,7 @@ describe DurationRange do
   describe '#this_month' do
     describe 'given 2021-04-30' do
       it 'from 2021-04-01 to 2021-04-30' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-04-01', '2021-04-30'] == range_to_array_of_string(duration.this_month)
@@ -24,7 +24,7 @@ describe DurationRange do
 
     describe 'given 2021-04-20' do
       it 'from 2021-04-01 to 2021-04-30' do
-        duration = DurationRange.new(today: Date.parse('2021-04-20'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
           ['2021-04-01', '2021-04-30'] == range_to_array_of_string(duration.this_month)
@@ -36,7 +36,7 @@ describe DurationRange do
   describe '#next_month' do
     describe 'given 2021-04-30' do
       it 'from 2021-05-01 to 2021-05-31' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-05-01', '2021-05-31'] == range_to_array_of_string(duration.next_month)
@@ -46,7 +46,7 @@ describe DurationRange do
 
     describe 'given 2021-04-30 and 2 month later' do
       it 'from 2021-06-01 to 2021-06-30' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-06-01', '2021-06-30'] == range_to_array_of_string(duration.next_month(count: 2))
@@ -58,7 +58,7 @@ describe DurationRange do
   describe '#last_month' do
     describe 'given 2021-04-30' do
       it 'from 2021-03-01 to 2021-03-31' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-03-01', '2021-03-31'] == range_to_array_of_string(duration.last_month)
@@ -68,7 +68,7 @@ describe DurationRange do
 
     describe 'given 2021-04-30 and 2 months earlier' do
       it 'from 2021-02-01 to 2021-02-28' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-02-01', '2021-02-28'] == range_to_array_of_string(duration.last_month(count: 2))
@@ -80,7 +80,7 @@ describe DurationRange do
   describe '#this_week' do
     describe 'given 2021-04-30' do
       it 'from 2021-04-26 to 2021-05-02' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-04-26', '2021-05-02'] == range_to_array_of_string(duration.this_week)
@@ -90,7 +90,7 @@ describe DurationRange do
 
     describe 'given 2021-04-20' do
       it 'from 2021-04-19 to 2021-04-25' do
-        duration = DurationRange.new(today: Date.parse('2021-04-20'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
           ['2021-04-19', '2021-04-25'] == range_to_array_of_string(duration.this_week)
@@ -102,7 +102,7 @@ describe DurationRange do
   describe '#next_week' do
     describe 'given 2021-04-30' do
       it 'from 2021-05-03 to 2021-05-09' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-05-03', '2021-05-09'] == range_to_array_of_string(duration.next_week)
@@ -112,7 +112,7 @@ describe DurationRange do
 
     describe 'given 2021-04-20' do
       it 'from 2021-04-26 to 2021-05-02' do
-        duration = DurationRange.new(today: Date.parse('2021-04-20'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
           ['2021-04-26', '2021-05-02'] == range_to_array_of_string(duration.next_week)
@@ -122,7 +122,7 @@ describe DurationRange do
 
     describe 'given 2021-04-30 and 2 weeks later' do
       it 'from 2021-05-10 to 2021-05-16' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-05-10', '2021-05-16'] == range_to_array_of_string(duration.next_week(count: 2))
@@ -134,7 +134,7 @@ describe DurationRange do
   describe '#last_week' do
     describe 'given 2021-04-30' do
       it 'from 2021-04-19 to 2021-04-25' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-04-19', '2021-04-25'] == range_to_array_of_string(duration.last_week)
@@ -144,7 +144,7 @@ describe DurationRange do
 
     describe 'given 2021-04-20' do
       it 'from 2021-04-12 to 2021-04-18' do
-        duration = DurationRange.new(today: Date.parse('2021-04-20'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
           ['2021-04-12', '2021-04-18'] == range_to_array_of_string(duration.last_week)
@@ -154,7 +154,7 @@ describe DurationRange do
 
     describe 'given 2021-04-30 and 2 weeks earlier' do
       it 'from 2021-04-12 to 2021-04-18' do
-        duration = DurationRange.new(today: Date.parse('2021-04-30'))
+        duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
           ['2021-04-12', '2021-04-18'] == range_to_array_of_string(duration.last_week(count: 2))

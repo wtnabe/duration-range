@@ -1,3 +1,3 @@
-class DurationRange
+module DurationRange
   VERSION = "0.1.0"
 end
