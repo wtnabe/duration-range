@@ -6,3 +6,7 @@ require "minitest/reporters"
 require "minitest-power_assert"
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+
+Dir.glob(__dir__ + "/support/**/*.rb").each { |f|
+  require f.sub(/\.rb/, '')
+}

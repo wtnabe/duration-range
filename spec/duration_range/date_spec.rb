@@ -1,15 +1,7 @@
 require 'spec_helper'
 
 describe DurationRange::Date do
-  #
-  # @param range [Range]
-  # @return [Array]
-  #
-  # :reek:UtilityFunction
-  def range_to_array_of_string(range)
-    arr = range.to_a
-    [arr.first.to_s, arr.last.to_s]
-  end
+  include TestableRange
 
   describe '#this_month' do
     describe 'given 2021-04-30' do
@@ -17,7 +9,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-04-01', '2021-04-30'] == range_to_array_of_string(duration.this_month)
+          ['2021-04-01', '2021-04-30'] == to_array_of_string(duration.this_month)
         }
       end
     end
@@ -27,7 +19,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
-          ['2021-04-01', '2021-04-30'] == range_to_array_of_string(duration.this_month)
+          ['2021-04-01', '2021-04-30'] == to_array_of_string(duration.this_month)
         }
       end
     end
@@ -39,7 +31,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-05-01', '2021-05-31'] == range_to_array_of_string(duration.next_month)
+          ['2021-05-01', '2021-05-31'] == to_array_of_string(duration.next_month)
         }
       end
     end
@@ -49,7 +41,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-06-01', '2021-06-30'] == range_to_array_of_string(duration.next_month(count: 2))
+          ['2021-06-01', '2021-06-30'] == to_array_of_string(duration.next_month(count: 2))
         }
       end
     end
@@ -61,7 +53,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-03-01', '2021-03-31'] == range_to_array_of_string(duration.last_month)
+          ['2021-03-01', '2021-03-31'] == to_array_of_string(duration.last_month)
         }
       end
     end
@@ -71,7 +63,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-02-01', '2021-02-28'] == range_to_array_of_string(duration.last_month(count: 2))
+          ['2021-02-01', '2021-02-28'] == to_array_of_string(duration.last_month(count: 2))
         }
       end
     end
@@ -83,7 +75,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-04-26', '2021-05-02'] == range_to_array_of_string(duration.this_week)
+          ['2021-04-26', '2021-05-02'] == to_array_of_string(duration.this_week)
         }
       end
     end
@@ -93,7 +85,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
-          ['2021-04-19', '2021-04-25'] == range_to_array_of_string(duration.this_week)
+          ['2021-04-19', '2021-04-25'] == to_array_of_string(duration.this_week)
         }
       end
     end
@@ -105,7 +97,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-05-03', '2021-05-09'] == range_to_array_of_string(duration.next_week)
+          ['2021-05-03', '2021-05-09'] == to_array_of_string(duration.next_week)
         }
       end
     end
@@ -115,7 +107,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
-          ['2021-04-26', '2021-05-02'] == range_to_array_of_string(duration.next_week)
+          ['2021-04-26', '2021-05-02'] == to_array_of_string(duration.next_week)
         }
       end
     end
@@ -125,7 +117,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-05-10', '2021-05-16'] == range_to_array_of_string(duration.next_week(count: 2))
+          ['2021-05-10', '2021-05-16'] == to_array_of_string(duration.next_week(count: 2))
         }
       end
     end
@@ -137,7 +129,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-04-19', '2021-04-25'] == range_to_array_of_string(duration.last_week)
+          ['2021-04-19', '2021-04-25'] == to_array_of_string(duration.last_week)
         }
       end
     end
@@ -147,7 +139,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
 
         assert {
-          ['2021-04-12', '2021-04-18'] == range_to_array_of_string(duration.last_week)
+          ['2021-04-12', '2021-04-18'] == to_array_of_string(duration.last_week)
         }
       end
     end
@@ -157,7 +149,7 @@ describe DurationRange::Date do
         duration = DurationRange::Date.new(today: Date.parse('2021-04-30'))
 
         assert {
-          ['2021-04-12', '2021-04-18'] == range_to_array_of_string(duration.last_week(count: 2))
+          ['2021-04-12', '2021-04-18'] == to_array_of_string(duration.last_week(count: 2))
         }
       end
     end
