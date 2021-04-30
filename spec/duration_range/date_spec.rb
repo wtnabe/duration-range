@@ -3,6 +3,14 @@ require 'spec_helper'
 describe DurationRange::Date do
   include TestableRange
 
+  describe 'no arguments' do
+    it {
+      assert {
+        DurationRange::Date.new
+      }
+    }
+  end
+
   describe '#this_month' do
     describe 'given 2021-04-30' do
       it 'from 2021-04-01 to 2021-04-30' do

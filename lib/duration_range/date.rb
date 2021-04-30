@@ -6,7 +6,7 @@ module DurationRange
   class Date
     include DurationRange::CommonFunctions
 
-    def initialize(today: Date.today)
+    def initialize(today: ::Date.today)
       @today = today
     end
     attr_reader :today
