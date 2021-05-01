@@ -11,7 +11,7 @@ module DurationRange
     # @param localtime [boolish]
     #
     # :reek:BooleanParameter
-    def initialize(today: Date.today, with_localtime: false)
+    def initialize(today: ::Date.today, with_localtime: false)
       @today = today
       @with_localtime = with_localtime
     end

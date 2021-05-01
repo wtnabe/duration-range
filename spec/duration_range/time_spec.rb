@@ -15,6 +15,14 @@ describe DurationRange::Time do
     @duration_with_localtime
   end
 
+  describe 'no arguments' do
+    it {
+      assert {
+        DurationRange::Time.new
+      }
+    }
+  end
+  
   describe 'with_utc' do
     describe 'given 2021-04-30' do
       describe '#this_month' do
