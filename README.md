@@ -1,8 +1,6 @@
 # DurationRange
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/duration-range`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+duration range data generator
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'duration-range'
+
+DurationRange::Date.new.this_week.map(&:to_s)
+# => ["2021-04-26", "2021-04-27", "2021-04-28", "2021-04-29", "2021-04-30", "2021-05-01", "2021-05-02"]
+
+DurationRange::Date.new.last_month(as: :hash)
+# => {:begin=>Thu, 01 Apr 2021, :end=>Fri, 30 Apr 2021}
+
+DurationRange::Time.new.last_month
+# => {:begin=>2021-04-01 00:00:00 UTC, :end=>2021-05-01 00:00:00 UTC}
+```
 
 ## Development
 
