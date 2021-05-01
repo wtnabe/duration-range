@@ -23,11 +23,19 @@ describe DurationRange::Date do
     end
 
     describe 'given 2021-04-20' do
-      it 'from 2021-04-01 to 2021-04-30' do
-        duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
+      before {
+        @duration = DurationRange::Date.new(today: Date.parse('2021-04-20'))
+      }
 
+      it 'from 2021-04-01 to 2021-04-30' do
         assert {
-          ['2021-04-01', '2021-04-30'] == two_of_array_of_string(duration.this_month)
+          ['2021-04-01', '2021-04-30'] == two_of_array_of_string(@duration.this_month)
+        }
+      end
+
+      it 'as hash' do
+        assert {
+          { begin: Date.parse('2021-04-01'), end: Date.parse('2021-04-30') } == @duration.this_month(as: :hash)
         }
       end
     end
