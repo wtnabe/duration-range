@@ -2,6 +2,34 @@
 
 duration range data generator
 
+## Features
+
+generate Array / Hash of Date / Time
+
+e.g.
+
+```
+{:begin=>Mon, 19 Apr 2021, :end=>Sun, 25 Apr 2021} # week as Hash of Date
+[Mon, 19 Apr 2021, Tue, 20 Apr 2021, ... Sun, 25 Apr 2021] # week as Array of Date
+{:begin=>2021-04-01 00:00:00 UTC, :end=>2021-05-01 00:00:00 UTC} # month as Hash of Time
+```
+
+available classes:
+
+ * DurationRange::Date ( default type Array )
+ * DurationRange::Time ( default type Hash )
+
+available methods:
+
+ * this_week
+ * last_week
+ * next_week
+ * this_month
+ * last_month
+ * next_month
+ * month
+ * months
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -31,6 +59,12 @@ DurationRange::Date.new.last_month(as: :hash)
 
 DurationRange::Time.new.last_month
 # => {:begin=>2021-04-01 00:00:00 UTC, :end=>2021-05-01 00:00:00 UTC}
+
+DurationRange::Time.new.month('2021-04')
+# => {:begin=>2021-04-01 00:00:00 UTC, :end=>2021-05-01 00:00:00 UTC}
+
+DurationRange::Date.new.months('2021-04', '2021-06')
+# => [Thu, 01 Apr 2021, Fri, 02 Apr 2021, ... Wed, 30 Jun 2021]
 ```
 
 ## Development
