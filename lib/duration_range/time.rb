@@ -46,12 +46,34 @@ module DurationRange
     end
 
     #
+    # @param month [String]
+    # @param as [Symbol]
+    # @return [Object]
+    #
+    def month(month, as: :hash)
+      dates = month_as_date(month, as: :hash)
+
+      tidy_with_time(as: as, begin_date: dates[:begin], end_date: dates[:end] + 1)
+    end
+
+    #
+    # @param months [Array]
+    # @param as [Symbol]
+    # @return [Object]
+    #
+    def months(*months, as: :hash)
+      dates = months_as_date(*months, as: :hash)
+
+      tidy_with_time(as: as, begin_date: dates[:begin], end_date: dates[:end] + 1)
+    end
+
+    #
     # @param as [Symbol]
     # @param reference_date [Date]
     # @return [Object]
     #
     def this_month(as: :hash, reference_date: today)
-      dates = super(as: :hash, reference_date: reference_date)
+      dates = this_month_as_date(as: :hash, reference_date: reference_date)
 
       tidy_with_time(as: as, begin_date: dates[:begin], end_date: dates[:end] + 1)
     end

@@ -24,6 +24,42 @@ describe DurationRange::Time do
   end
   
   describe 'with_utc' do
+    describe '#month' do
+      describe 'given 2021-04 and as: :hash' do
+        it {
+          assert {
+            { begin: '2021-04-01 00:00:00 UTC', end: '2021-05-01 00:00:00 UTC' } == stringified_hash(duration_with_utc.month('2021-04'))
+          }
+        }
+      end
+
+      describe 'given 2021-04 and as: :array' do
+        it {
+          assert {
+            ['2021-04-01 00:00:00 UTC', '2021-05-01 00:00:00 UTC'] == two_of_array_of_string(duration_with_utc.month('2021-04', as: :array))
+          }
+        }
+      end
+    end
+
+    describe '#months' do
+      describe 'given 2021-04, 2021-05 and as: :hash' do
+        it {
+          assert {
+            { begin: '2021-04-01 00:00:00 UTC', end: '2021-06-01 00:00:00 UTC' } == stringified_hash(duration_with_utc.months('2021-04', '2021-05'))
+          }
+        }
+      end
+
+      describe 'given 2021-04, 2021-05 and as: :array' do
+        it {
+          assert {
+            ['2021-04-01 00:00:00 UTC', '2021-06-01 00:00:00 UTC'] == two_of_array_of_string(duration_with_utc.months('2021-04', '2021-05', as: :array))
+          }
+        }
+      end
+    end
+
     describe 'given 2021-04-30' do
       describe '#this_month' do
         describe 'as: :hash' do

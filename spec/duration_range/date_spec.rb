@@ -11,6 +11,42 @@ describe DurationRange::Date do
     }
   end
 
+  describe '#month' do
+    describe 'as: :hash' do
+      it {
+        assert {
+          { begin: '2021-04-01', end: '2021-04-30' } == stringified_hash(DurationRange::Date.new.month('2021-04', as: :hash))
+        }
+      }
+    end
+
+    describe 'as: :array' do
+      it {
+        assert {
+          ['2021-04-01', '2021-04-30'] == two_of_array_of_string(DurationRange::Date.new.month('2021-04'))
+        }
+      }
+    end
+  end
+
+  describe '#months' do
+    describe 'as: :hash' do
+      it {
+        assert {
+          { begin: '2021-04-01', end: '2021-05-31' } == stringified_hash(DurationRange::Date.new.months('2021-04', '2021-05', as: :hash))
+        }
+      }
+    end
+
+    describe 'as: :array' do
+      it {
+        assert {
+          ['2021-04-01', '2021-05-31'] == two_of_array_of_string(DurationRange::Date.new.months('2021-04', '2021-05'))
+        }
+      }
+    end
+  end
+
   describe '#this_month' do
     describe 'given 2021-04-30' do
       it 'from 2021-04-01 to 2021-04-30' do

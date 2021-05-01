@@ -32,11 +32,45 @@ module DurationRange
     end
 
     #
+    # @param month [String]
+    # @param as [Symbol]
+    # @return [Object]
+    #
+    def month_as_date(month, as:)
+      this_month_as_date(as: as, reference_date: ::Date.parse(month + '-01'))
+    end
+
+    #
+    # @param months [Array]
+    # @param as [Symbol]
+    # @return [Object]
+    #
+    # :reek:NilCheck :reek:TooMenyStatements
+    def months_as_date(*months, as:)
+      min = nil
+      max = nil
+      months.each { |mon|
+        dates = month_as_date(mon, as: :hash)
+        begin_date = dates[:begin]
+        end_date = dates[:end]
+
+        if min.nil? || begin_date < min
+          min = begin_date
+        end
+        if max.nil? || max < end_date
+          max = end_date
+        end
+      }
+
+      tidy_with_date(as: as, begin_date: min, end_date: max)
+    end
+
+    #
     # @param as [Symbol]
     # @param reference_date [Date]
     # @return [Object]
     #
-    def this_month(as:, reference_date: today)
+    def this_month_as_date(as:, reference_date: today)
       begin_date = reference_date.at_beginning_of_month
       end_date = reference_date.at_end_of_month
 

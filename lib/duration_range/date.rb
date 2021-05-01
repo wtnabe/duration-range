@@ -7,12 +7,34 @@ module DurationRange
     include DurationRange::CommonFunctions
 
     #
+    # generate specific month duration (e.g. 2021-04)
+    #
+    # @param month [String]
+    # @param as [Symbol]
+    # @return [Object]
+    #
+    def month(month, as: :array)
+      month_as_date(month, as: as)
+    end
+
+    #
+    # longest duration from multiple months
+    #
+    # @param months [Array]
+    # @param as [Symbol]
+    # @return [Object]
+    #
+    def months(*months, as: :array)
+      months_as_date(*months, as: as)
+    end
+
+    #
     # @param as [Symbol]
     # @param reference_date [Date]
     # @return [Object]
     #
     def this_month(as: :array, reference_date: today)
-      super(as: as, reference_date: reference_date)
+      this_month_as_date(as: as, reference_date: reference_date)
     end
 
     #
