@@ -22,7 +22,7 @@ module DurationRange
     # @return [Object]
     #
     # :reek:UtilityFunction :reek:ControlParameter
-    def tidy(as:, begin_date:, end_date:)
+    def tidy_with_date(as:, begin_date:, end_date:)
       case as
       when :array
         (begin_date..end_date).to_a
@@ -40,7 +40,7 @@ module DurationRange
       begin_date = reference_date.at_beginning_of_month
       end_date = reference_date.at_end_of_month
 
-      tidy(as: as, begin_date: begin_date, end_date: end_date)
+      tidy_with_date(as: as, begin_date: begin_date, end_date: end_date)
     end
 
     #
@@ -70,7 +70,7 @@ module DurationRange
       begin_date = reference_date.beginning_of_week
       end_date = reference_date.end_of_week
 
-      tidy(as: as, begin_date: begin_date, end_date: end_date)
+      tidy_with_date(as: as, begin_date: begin_date, end_date: end_date)
     end
 
     #
