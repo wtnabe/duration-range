@@ -19,6 +19,8 @@ available classes:
  * DurationRange::Date ( default type Array )
  * DurationRange::Time ( default type Hash )
 
+DurationRange::Date generates range using `ge` and `le`. DurationRange::Time differs from that, it uses `ge` and `lt` to generate the range.
+
 available methods:
 
  * this_week
